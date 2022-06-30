@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ConnectionTests" project="ex02_re" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="org.lacram.connection.ConnectionTests" time="0.08">
+    <testcase name="MyBatisTest" classname="org.lacram.connection.ConnectionTests" time="0.033"/>
+    <testcase name="testConnection" classname="org.lacram.connection.ConnectionTests" time="0.042"/>
+    <testcase name="test" classname="org.lacram.connection.ConnectionTests" time="0.001"/>
+    <testcase name="hikariTest" classname="org.lacram.connection.ConnectionTests" time="0.002"/>
+  </testsuite>
+</testrun>
