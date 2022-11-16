@@ -27,7 +27,6 @@ int bfs(int alp, int cop, int X, int Y, vector<vector<int>> problems) {
       memo[i][j] = INF;
     }
   
-
   priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, greater<pair<int,pair<int,int>>>> pq;
 
   pq.push({0,{alp,cop}});
@@ -58,7 +57,7 @@ int bfs(int alp, int cop, int X, int Y, vector<vector<int>> problems) {
 
         if (nx > 150) nx = 150;
         if (ny > 150) ny = 150;
-        if (memo[nx][ny] < cost+solveCost) continue;;
+        if (memo[nx][ny] < cost+solveCost) continue;
 
         memo[nx][ny] = cost+solveCost;
         pq.push({cost+solveCost,{nx,ny}});

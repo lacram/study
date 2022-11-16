@@ -205,6 +205,8 @@ int main(){
 
   // ifstream cin;
   // cin.open("input.txt");
+  ifstream cin;
+  cin.open("input.txt");
 
   cin >> n >> k;
 

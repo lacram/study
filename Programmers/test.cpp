@@ -7,6 +7,9 @@
 #include <queue>
 #include <stack>
 #include <map>
+#include <string>
+#include <set>
+8
 #define endl '\n'
 #define INF 2000000000
 
@@ -22,7 +25,6 @@ int main(){
   ifstream cin;
   cin.open("input.txt");
 
-  string a = "abc";
-  cout << a.substr(1,1);
+  //solution();
 
 }
