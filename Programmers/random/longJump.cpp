@@ -11,12 +11,19 @@
 #include <set>
 #define endl '\n'
 #define INF 2000000000
-#define ll long long
 
 using namespace std;
 
+long long dp[2001];
+
 long long solution(int n) {
-  ll a = 1;
+  dp[1] = 1;
+  dp[2] = 2;
+
+  for (int i=3; i<=n; i++) {
+    dp[i] = (dp[i-2] + dp[i-1])%1234567;
+  }
+  return dp[n];
 }
 
 int main(){
@@ -28,6 +35,4 @@ int main(){
   cin.open("input.txt");
 
   //solution();
-  ll a = 1;
-  cout << a;
 }
