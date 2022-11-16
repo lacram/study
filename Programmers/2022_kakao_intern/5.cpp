@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <cstring>
 #include <fstream>
 #include <algorithm>
@@ -7,48 +6,75 @@
 #include <queue>
 #include <stack>
 #include <map>
+#include <vector>
 #define endl '\n'
 #define INF 2000000000
 
 using namespace std;
 
-vector<vector<int>> board;
+using namespace std;
 
-void rotate(int h, int w) {
-  vector<vector<int>> tmp = board;
-  
-  for (int i=1; i<w; i++) tmp[0][i] = board[0][i-1];
-  for (int i=1; i<h; i++) tmp[i][w-1] = board[i-1][w-1];
-  for (int i=0; i<w-1; i++) tmp[h-1][i] = board[h-1][i+1];
-  for (int i=0; i<h-1; i++) tmp[i][0] = board[i+1][0];
+vector<vector<int>> ShiftRow(vector<vector<int>> rc){
+  vector<vector<int>> answer;
+  answer.resize(rc.size());
 
-  board = tmp;
-}
-
-void shiftRow(int h) {
-  for (int i=h-1; i>0; i--)
-    swap(board[i],board[i-1]);
-}
-
-void print(){
-  for (int i=0; i<3; i++){
-    for (int j=0; j<3; j++)
-      cout << board[i][j] << " ";
-    cout << endl;
-  }
-}
-
-vector<vector<int>> solution(vector<vector<int>> rc, vector<string> operations) {
-  board = rc;
-  int h = rc.size();
-  int w = rc[0].size();
-
-  for (auto op : operations) {
-    if (op == "Rotate") rotate(h,w);
-    if (op == "ShiftRow") shiftRow(h);
+  for (int i = 0; i < rc.size(); ++i)  {
+      if (i + 1 == rc.size())
+          answer[0] = rc[i];
+      else
+          answer[i + 1] = rc[i];
   }
 
-  return board;
+  return answer;
+}
+
+vector<vector<int>> Rotate(vector<vector<int>> rc){
+  vector<vector<int>> answer = rc;
+  int row = rc.size();
+  int column = rc[0].size();
+
+  // 윗쪽
+  for (int i = 1; i < column; ++i)
+  {
+      answer[0][i] = rc[0][i - 1];
+  }
+
+  // 오른쪽
+  for (int i = 1; i < row; ++i)
+  {
+      answer[i][column - 1] = rc[i - 1][column - 1];
+  }
+
+  // 아래쪽
+  for (int i = 1; i < column; ++i)
+  {
+      answer[row - 1][i - 1] = rc[row - 1][i];
+  }
+
+  // 왼쪽
+  for (int i = 1; i < row; ++i)
+  {
+      answer[i - 1][0] = rc[i][0];
+  }
+
+  return answer;
+}
+
+vector<vector<int>> solution(vector<vector<int>> rc, vector<string> operations){
+  vector<vector<int>> answer = rc;
+
+  for (string operation : operations) {
+    if (operation == "ShiftRow")
+    {
+        answer = ShiftRow(answer);
+    }
+    else if (operation == "Rotate")
+    {
+        answer = Rotate(answer);
+    }
+  }
+
+  return answer;
 }
 
 int main(){
@@ -59,7 +85,6 @@ int main(){
   ifstream cin;
   cin.open("input.txt");
 
-  print();
-  rotate(3,3);
-  print();
+  //solution();
+
 }

@@ -73,6 +73,7 @@ void flyAndStack() {
 
     // rows 원소 수 만큼 공중 부양 -> cols 첫 행에서 삭제
     cols[0].erase(cols[0].begin(), cols[0].begin() + rows.size());
+    
     // 첫 행만 남기기
     cols = {cols[0]};
     
@@ -202,8 +203,8 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
-  ifstream cin;
-  cin.open("input.txt");
+  // ifstream cin;
+  // cin.open("input.txt");
 
   cin >> n >> k;
 

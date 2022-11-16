@@ -18,10 +18,15 @@ using namespace std;
  */
 
 int bfs(int alp, int cop, int X, int Y, vector<vector<int>> problems) {
-  int memo[3150][3150];
-  for (int i=0; i<3150; i++)
-    for (int j=0; j<3150; j++)
+  // 150,150을 달성하면 모든 문제 풀기 가능
+  int memo[151][151];
+  int visited[151][151];
+  for (int i=0; i<151; i++)
+    for (int j=0; j<151; j++){
+      visited[i][j] = 0;
       memo[i][j] = INF;
+    }
+  
 
   priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, greater<pair<int,pair<int,int>>>> pq;
 
@@ -35,7 +40,9 @@ int bfs(int alp, int cop, int X, int Y, vector<vector<int>> problems) {
     pq.pop();
 
     if (x >= X && y >= Y) return cost;
-    if (memo[x][y] < cost) continue;
+    if (visited[x][y]) continue;
+
+    visited[x][y] = 1;
 
     for (auto problem : problems) {
       int needX = problem[0];
@@ -49,7 +56,9 @@ int bfs(int alp, int cop, int X, int Y, vector<vector<int>> problems) {
         int nx = x+gainX;
         int ny = y+gainY;
 
-        if (memo[nx][ny] < cost+solveCost) continue;
+        if (nx > 150) nx = 150;
+        if (ny > 150) ny = 150;
+        if (memo[nx][ny] < cost+solveCost) continue;;
 
         memo[nx][ny] = cost+solveCost;
         pq.push({cost+solveCost,{nx,ny}});
