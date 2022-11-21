@@ -14,21 +14,25 @@
 
 using namespace std;
 
-int getValue(long long idx, int n) {
-  int i = idx / n;
-  int j = idx % n;
+int solution(vector<int> scoville, int k) {
+  priority_queue<int, vector<int>, greater<>> minheap;
 
-  int value = max(i,j)+1;
-  return value;
-}
-
-vector<int> solution(int n, long long left, long long right) {
-
-  vector<int> ans;
-  for (long long i=left; i<=right; i++) {
-    ans.push_back(getValue(i,n));
+  for (auto s :scoville) {
+    minheap.push(s);
   }
-  return ans;
+
+  int ans = 0;
+  while (minheap.size() != 1 && minheap.top() < k) {
+    int a = minheap.top();
+    minheap.pop();
+    int b = minheap.top();
+    minheap.pop();
+
+    minheap.push(a+b*2);
+    ans++;
+  }
+  
+  return minheap.top() >= k ? ans : -1;
 }
 
 int main(){

@@ -18,45 +18,30 @@ char leftBracket[3] = {'{', '[', '(' };
 char rightBracket[3] = {'}', ']', ')'};
 
 bool isRightBracketString(string str) {
-  int arr[3] = {0,0,0};
-  int idx = 0;
-
+  stack<char> st;
+  
   for (int i=0; i<str.size(); i++) {
     char c = str[i];
+
     for (int j=0; j<3; j++) {
       if (c == leftBracket[j]) {
-        arr[j]++;
-        idx = i;
+        st.push(c);
       }
       if (c == rightBracket[j]) {
-        if (str[idx] == leftBracket[j] && arr[j] > 0) {
-          arr[j]--;
-          idx--;
-        }
+        if (!st.empty() && st.top() == leftBracket[j]) st.pop();
         else return false;
       }
     }
   }
-  for (int i=0; i<3; i++) {
-    if (arr[i] != 0) return false;
-  }
-  return true;
+  return st.empty();
 }
-
-// int solution(string s) {
-//   int ans = 0;
-//   for (int i=0; i<s.size(); i++) {
-//     if (isRightBracketString(s.substr(i)+s.substr(0,i))) {
-//       ans++;
-//     }
-//   }
-//   return ans;
-// }
 
 int solution(string s) {
   int ans = 0;
-  if (isRightBracketString(s)) {
-    ans++;
+  for (int i=0; i<s.size(); i++) {
+    if (isRightBracketString(s.substr(i)+s.substr(0,i))) {
+      ans++;
+    }
   }
   return ans;
 }

@@ -9,13 +9,12 @@
 #include <map>
 #include <string>
 #include <set>
-8
 #define endl '\n'
 #define INF 2000000000
 
 using namespace std;
 
-
+int n;
 
 int main(){
   ios_base :: sync_with_stdio(false);
@@ -25,6 +24,10 @@ int main(){
   ifstream cin;
   cin.open("input.txt");
 
-  //solution();
+  cin >> n;
+
+  for (int i=0; i<n; i++){
+
+  }
 
 }
