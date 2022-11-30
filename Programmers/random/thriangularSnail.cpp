@@ -25,7 +25,7 @@ void fillTriangle(int start, int number, int n, int depth) {
   if (n <= 0) return;
 
   int now = start;
-  // 왼
+  // 좌
   for (int i=0; i<n; i++) {
     now = now+i + 2*depth;  
     board[now] = number++;
