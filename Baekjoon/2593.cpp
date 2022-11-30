@@ -10,91 +10,90 @@
 #include <string>
 #include <set>
 #define endl '\n'
-#define INF 10000000
+#define INF 2000000000
 
 using namespace std;
 
-int n,m;
-int dp[100][100];
-int back[100][100];
-vector<vector<int>> arr;
+// n층, m대의 엘리베이터
+int n, m;
+int parent[101];
+vector<pair<int,int>> elevators;
+int dist[101];
+vector<vector<int>> tree;
+vector<int> goals;
+vector<int> starts;
 
-vector<int> getFloors(int fr, int t, int n) {
-  vector<int> v;
-  for (int i=fr; i<=n; i+=t) {
-    v.push_back(i);
-  }
-  return v;
-}
 
-// now = fr2 + k2 * t
-bool canGo(vector<int> v1, vector<int> v2) {
-  int fr = v1[0];
-  int k = v1[1];
-  int fr2 = v2[0];
-  int k2 = v2[1];
-  int now = fr - fr2;
+/* 
+bfs
+ */
 
-  while (now <= n) {
-    if (now >=0 && now % k2 == 0) return true;
-    now += k;
+bool canGo(int a, int b) {
+  int start = elevators[a].first;
+  int interval = elevators[a].second;
+  int start2 = elevators[b].first;
+  int interval2 = elevators[b].second;
+
+  for (int floor=start2; floor<=n; floor+=interval2) {
+    if (floor >= start && ((floor-start) % interval) == 0) {
+      return true;
+    }
   }
   return false;
 }
 
-void setDP() {
-  for (int i=0; i<arr.size(); i++)
-    for (int j=i+1; j<arr.size(); j++) {
-      if (canGo(arr[i], arr[j])) {
-        dp[i][j] = 1;
-        dp[j][i] = 1;
+vector<int> getElevator(int floor) {
+  vector<int> v;
+  for (int j=0; j<m; j++) {
+    int start = elevators[j].first;
+    int interval = elevators[j].second;
+
+    for (int i=start; i<=n; i+=interval) {
+      if (i == floor) v.push_back(j);
+    }
+  }
+  return v;
+}
+
+void print(int num) {
+  if (num == -1) return;
+  print(parent[num]);
+  cout << num+1 << endl;
+}
+
+void makeTree() {
+  tree.resize(elevators.size());
+
+  for (int i=0; i<elevators.size(); i++)
+    for (int j=i+1; j<elevators.size(); j++) {
+      if (canGo(i, j)) {
+        tree[i].push_back(j);
+        tree[j].push_back(i);
       }
     }
 }
 
-void print(int fr, int to) {
-  if (back[fr][to] != -1) {
-    print(fr,back[fr][to]);
-    cout << back[fr][to] << endl;
+void bfs() {
+  queue<vector<int>> q;
+
+  for (auto start : starts) {
+    q.push({start,1});
+    dist[start] = 1;
   }
-}
 
-int getIdx(int floor) {
-  for (int i=0; i<arr.size(); i++) {
-    int fr = arr[i][0];
-    int k = arr[i][1];
+  while (!q.empty()) {
+    int now = q.front()[0];
+    int cost = q.front()[1];
+    q.pop();
 
-    if (floor >= fr && (floor-fr) % k == 0) return i;
-  }
-  return -1;
-}
-
-void solution(int fr, int to) {
-  for (int i=0; i<100; i++)
-    for (int j=0; j<100; j++) {
-      dp[i][j] = INF;
-      back[i][j] = -1;
-    }
-
-  setDP();
-
-  for (int k=0; k<m; k++)
-    for (int i=0; i<m; i++)
-      for (int j=0; j<m; j++) {
-        if (dp[i][j] > dp[i][k] + dp[k][j]) {
-          dp[i][j] = dp[i][k] + dp[k][j];
-          back[i][j] = k;
-        }
+    for (auto next : tree[now]) {
+      if (dist[next] > cost+1) {
+        dist[next] = cost + 1;
+        q.push({next,cost+1});
+        parent[next] = now; 
       }
-  
-  if (dp[fr][to] == INF) {
-    cout << -1;
-    return;
+    }
   }
-  cout << dp[fr][to]+1 << endl;
-  cout << fr+1 << endl;
-  print(fr,to);
-  cout << to+1 << endl;
 }
 
 int main(){
@@ -108,17 +107,33 @@ int main(){
   cin >> n >> m;
 
   for (int i=0; i<m; i++){
-    int fr, t;
-    cin >> fr >> t;
-    arr.push_back({fr,t});
+    int start, interval;
+    cin >> start >> interval;
+    elevators.push_back({start, interval});
   }
 
   int fr,to;
   cin >> fr >> to;
 
-  if (getIdx(fr) == -1 || getIdx(to) == -1) {
-    cout << -1;
-    return 0;
+  makeTree();
+  starts = getElevator(fr);
+  goals = getElevator(to);
+
+  fill(dist, dist + 101, INF);
+  memset(parent, -1, sizeof(parent));
+  bfs();
+
+  int ans = INF,last;
+  for (auto goal : goals) {
+    if (ans > dist[goal]) {
+      ans = dist[goal];
+      last = goal;
+    }
   }
-  solution(getIdx(fr), getIdx(to));
+
+  if (ans == INF) cout << -1;
+  else {
+    cout << ans << endl;
+    print(last);
+  }
 }
