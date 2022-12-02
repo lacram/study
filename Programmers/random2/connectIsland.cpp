@@ -31,8 +31,8 @@ void merge(int u, int v) {
   u = getParent(u);
   v = getParent(v);
 
-  if (u < v) u = parent[v];
-  else v = parent[u];
+  if (u < v) parent[v] = u;
+  else parent[u] = v;
 }
 
 bool isCycle(int u, int v) {
