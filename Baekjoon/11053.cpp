@@ -17,19 +17,23 @@ using namespace std;
 int n;
 
 /* 
-dp[i] = dp[i-2]+dp[i-1]
+if (cost[k] < cost[j]) dp[i][j] = dp[i][k] + dp[k][j] - 1;
+
  */
 
-int dp[1001];
+vector<int> dp(1001, 0);
+int cost[1001];
 
 int solution() {
-  dp[1] = 1;
-  dp[2] = 2;
-
-  for (int i=3; i<=n; i++) {
-    dp[i] = (dp[i-2]+dp[i-1])%10007;
+  dp[n] = 1;
+  for (int i=n-1; i>=1; i--) {
+    for (int j=i; j<=n; j++) {
+      if (cost[i] < cost[j]) {
+        dp[i] = max(dp[i], dp[j]+1);
+      }
+    }
   }
-  return dp[n];
+  return *max_element(dp.begin(), dp.end());
 }
 
 int main(){
@@ -41,6 +45,10 @@ int main(){
   // cin.open("input.txt");
 
   cin >> n;
+
+  for (int i=1; i<=n; i++){
+    cin >> cost[i];
+  }
 
   cout << solution();
 }
