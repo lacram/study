@@ -21,7 +21,7 @@ if (cost[k] < cost[j]) dp[i][j] = dp[i][k] + dp[k][j] - 1;
 
  */
 
-vector<int> dp(1001, 0);
+vector<int> dp(1001, 1);
 int cost[1001];
 
 int solution() {
