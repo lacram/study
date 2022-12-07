@@ -15,19 +15,13 @@
 using namespace std;
 
 int n;
-vector<vector<int>> board(500, vector<int>(500));
+vector<int> arr(100000);
 
 int solution() {
-  for (int i=1; i<n; i++)
-    for (int j=0; j<n; j++) {
-      if (j == 0) board[i][j] += board[i-1][j];
-      else if (j == n-1) board[i][j] += board[i-1][j-1];
-      else {
-        board[i][j] += max(board[i-1][j-1], board[i-1][j]);
-      }
-    }
-
-  return *max_element(board[n-1].begin(), board[n-1].end());
+  for (int i=1; i<n; i++) {
+    arr[i] = max(arr[i], arr[i]+arr[i-1]);
+  }
+  return *max_element(arr.begin(), arr.begin()+n);
 }
 
 int main(){
@@ -41,9 +35,7 @@ int main(){
   cin >> n;
 
   for (int i=0; i<n; i++){
-    for (int j=0; j<=i; j++) {
-      cin >> board[i][j];
-    }
+    cin >> arr[i];
   }
 
   cout << solution();

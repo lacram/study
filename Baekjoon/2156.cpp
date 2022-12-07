@@ -15,19 +15,24 @@
 using namespace std;
 
 int n;
-vector<vector<int>> board(500, vector<int>(500));
+int arr[10000];
+vector<vector<int>> dp(10000, vector<int>(3));
+
+/* 
+연속으로 놓여 있는 3잔을 모두 마실 수는 없다.
+ */
 
 int solution() {
-  for (int i=1; i<n; i++)
-    for (int j=0; j<n; j++) {
-      if (j == 0) board[i][j] += board[i-1][j];
-      else if (j == n-1) board[i][j] += board[i-1][j-1];
-      else {
-        board[i][j] += max(board[i-1][j-1], board[i-1][j]);
-      }
-    }
+  dp[0][1] = arr[0];
+  dp[1][1] = arr[1];
+  dp[1][2] = arr[0] + arr[1];
 
-  return *max_element(board[n-1].begin(), board[n-1].end());
+  for (int i=2; i<n; i++) {
+    dp[i][0] = *max_element(dp[i-1].begin(), dp[i-1].end());
+    dp[i][1] = *max_element(dp[i-2].begin(), dp[i-2].end()) + arr[i];
+    dp[i][2] = dp[i-1][1] + arr[i];
+  }
+  return *max_element(dp[n-1].begin(), dp[n-1].end());
 }
 
 int main(){
@@ -41,9 +46,7 @@ int main(){
   cin >> n;
 
   for (int i=0; i<n; i++){
-    for (int j=0; j<=i; j++) {
-      cin >> board[i][j];
-    }
+    cin >> arr[i];
   }
 
   cout << solution();
