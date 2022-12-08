@@ -14,7 +14,18 @@
 
 using namespace std;
 
-int arr[10];
+int solution(vector<int> preferences, vector<int> coffees) {
+  sort(preferences.begin(), preferences.end());
+  sort(coffees.begin(), coffees.end());
+
+  int ans = 0;
+  for (int i=0; i<coffees.size(); i++) {
+    if (coffees[i] - preferences[i] > 0) {
+      ans += coffees[i] - preferences[i];
+    }
+  }
+  return ans;
+}
 
 int main(){
   ios_base :: sync_with_stdio(false);
@@ -23,10 +34,7 @@ int main(){
 
   ifstream cin;
   cin.open("input.txt");
-  
-  vector<int> v1 = {1,6};
-  vector<int> v2 = {1,6};
-  string a(v1.begin(), v1.end());
-  string b(v2.begin(), v2.end());
-  cout << a << endl << b;
+
+  //solution();
+
 }
