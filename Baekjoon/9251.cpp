@@ -15,23 +15,17 @@
 using namespace std;
 
 int n;
-int arr[16][2];
-vector<int> dp(16);
-
-/* 
- */
+int dp[1001][1001];
+string str1,str2;
 
 int solution() {
-  for (int i=1; i<=n+1; i++) {
-    for (int j=1; j<=i; j++) {
-      int workTime = arr[j][0];
-      int pay = arr[j][1];
-      if (j + workTime <= i) {
-        dp[i] = max(dp[i], dp[j]+pay);
-      }
+  for (int i=1; i<=str1.size(); i++)
+    for (int j=1; j<=str2.size(); j++) {
+      if (str1[i-1] == str2[j-1]) dp[i][j] = dp[i-1][j-1] + 1;
+      else dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
     }
-  }
-  return dp[n+1];
+
+  return dp[str1.size()][str2.size()];
 }
 
 int main(){
@@ -42,13 +36,7 @@ int main(){
   // ifstream cin;
   // cin.open("input.txt");
 
-  cin >> n;
-
-  for (int i=1; i<=n; i++){
-    for (int j=0; j<2; j++) {
-      cin >> arr[i][j];
-    }
-  }
+  cin >> str1 >> str2;
 
   cout << solution();
 }

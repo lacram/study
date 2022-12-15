@@ -14,24 +14,27 @@
 
 using namespace std;
 
-int n;
-int arr[16][2];
-vector<int> dp(16);
+int n,k;
 
 /* 
+dp[i][j] : i번째 물품 차례일때 j무게일 경우 최대 가치
+
  */
 
+int arr[101][2];
+vector<vector<int>> dp(101, vector<int>(100001));
+
 int solution() {
-  for (int i=1; i<=n+1; i++) {
-    for (int j=1; j<=i; j++) {
-      int workTime = arr[j][0];
-      int pay = arr[j][1];
-      if (j + workTime <= i) {
-        dp[i] = max(dp[i], dp[j]+pay);
-      }
+
+  for (int i=1; i<=n; i++){
+    int weight = arr[i][0];
+    int value = arr[i][1];
+    for (int j=1; j<=k; j++) {
+      if (j-weight >= 0) dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight] + value);
+      else dp[i][j] = dp[i-1][j];
     }
   }
-  return dp[n+1];
+  return *max_element(dp[n].begin(), dp[n].end());
 }
 
 int main(){
@@ -42,12 +45,11 @@ int main(){
   // ifstream cin;
   // cin.open("input.txt");
 
-  cin >> n;
+  cin >> n >> k;
 
   for (int i=1; i<=n; i++){
-    for (int j=0; j<2; j++) {
+    for (int j=0; j<2; j++)
       cin >> arr[i][j];
-    }
   }
 
   cout << solution();

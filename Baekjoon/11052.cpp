@@ -15,23 +15,23 @@
 using namespace std;
 
 int n;
-int arr[16][2];
-vector<int> dp(16);
+int arr[10001];
+int dp[1001];
 
 /* 
+카드개수 i
+dp[i]
  */
 
+
 int solution() {
-  for (int i=1; i<=n+1; i++) {
-    for (int j=1; j<=i; j++) {
-      int workTime = arr[j][0];
-      int pay = arr[j][1];
-      if (j + workTime <= i) {
-        dp[i] = max(dp[i], dp[j]+pay);
-      }
+
+  for (int i=1; i<=n; i++) {
+    for (int j=1; j<=n; j++){
+      if (i-j >= 0) dp[i] = max(dp[i], dp[i-j] + arr[j]);
     }
   }
-  return dp[n+1];
+  return dp[n];
 }
 
 int main(){
@@ -45,9 +45,7 @@ int main(){
   cin >> n;
 
   for (int i=1; i<=n; i++){
-    for (int j=0; j<2; j++) {
-      cin >> arr[i][j];
-    }
+    cin >> arr[i];
   }
 
   cout << solution();
