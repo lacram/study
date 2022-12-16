@@ -40,7 +40,7 @@ int solution() {
     }
     res = max(res, tmp);
 
-  } while(next_permutation(numbers.begin(), numbers.end()));
+  } while(next_permutation(numbers.begin()+1, numbers.end()));
 
   return res;
 }
