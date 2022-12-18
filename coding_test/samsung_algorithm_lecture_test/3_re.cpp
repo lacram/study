@@ -34,6 +34,7 @@ void dijkstra() {
       for (int t=0; t<m; t++) {
         dist[i][j][t] = INF;
       }
+      
   queue<vector<int>> q;
 
   for (int i=0; i<dangers.size(); i++) {
