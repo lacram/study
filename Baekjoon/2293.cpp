@@ -14,29 +14,18 @@
 
 using namespace std;
 
-int n,k;
-int dp[20];
+int dp[10001];
 int value[100];
-
-int dfs(int money) {
-  if (money == 0) return 1;
-
-  int& res = dp[money];
-  if (res != -1) return res;
-
-  int tmp = 1;
-  for (int i=0; i<n; i++) {
-    int nextMoney = money-value[i];
-    if (nextMoney >= 0) tmp *= dfs(nextMoney);
-  }
-  res = tmp;
-  return res;
-}
+int n,k;
 
 int solution() {
-  memset(dp, -1, sizeof(dp));
-
-  return dfs(k);
+  dp[0] = 1;
+  for (int i=0; i<n; i++)
+    for (int j=1; j<=k; j++) {
+      if (j-value[i] >= 0) dp[j] += dp[j-value[i]];
+    }
+  
+  return dp[k];
 }
 
 int main(){

@@ -41,7 +41,7 @@ int solution() {
   for (int i=1; i<=n; i++) {
     ans = max(ans, dp[i]+rdp[i]);
   }
-  return ans;
+  return ans-1;
 }
 
 int main(){
@@ -49,8 +49,8 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
-  ifstream cin;
-  cin.open("input.txt");
+  // ifstream cin;
+  // cin.open("input.txt");
 
   cin >> n;
 
