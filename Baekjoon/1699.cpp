@@ -14,18 +14,27 @@
 
 using namespace std;
 
-int dp[10001];
-int value[100];
-int n,k;
+int n;
+int dp[100001];
+vector<int> squareNumbers;
+
+void getSquareNumber() {
+  for (int i=1; i*i<=n; i++) {
+    squareNumbers.push_back(i*i);
+  }
+}
 
 int solution() {
-  dp[0] = 1;
-  for (int i=0; i<n; i++)
-    for (int j=1; j<=k; j++) {
-      if (j-value[i] >= 0) dp[j] += dp[j-value[i]];
+  getSquareNumber();
+
+  for (int i=1; i<=n; i++) {
+    dp[i] = INF;
+    for (int j=0; j<squareNumbers.size(); j++) {
+      if (i-squareNumbers[j] >= 0) dp[i] = min(dp[i], dp[i-squareNumbers[j]]+1);
     }
-  
-  return dp[k];
+  }
+
+  return dp[n];
 }
 
 int main(){
@@ -36,11 +45,7 @@ int main(){
   // ifstream cin;
   // cin.open("input.txt");
 
-  cin >> n >> k;
-
-  for (int i=0; i<n; i++){
-    cin >> value[i];
-  }
+  cin >> n;
 
   cout << solution();
 }

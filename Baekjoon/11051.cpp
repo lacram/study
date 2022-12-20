@@ -14,16 +14,28 @@
 
 using namespace std;
 
-int arr[10];
+int n,k;
+int dp[1001][1001];
+
+int solution() {
+  dp[1][0] = 1;
+  dp[1][1] = 1;
+  for (int i=2; i<=n; i++)
+    for (int j=0; j<=i; j++)
+      dp[i][j] = (dp[i-1][j-1] + dp[i-1][j]) % 10007;
+  
+  return dp[n][k];
+}
 
 int main(){
   ios_base :: sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
 
-  ifstream cin;
-  cin.open("input.txt");
-  
-  vector<int> v = {1,2,3,4,5};
-  cout << max({1,2,3});
+  // ifstream cin;
+  // cin.open("input.txt");
+
+  cin >> n >> k;
+
+  cout << solution();
 }

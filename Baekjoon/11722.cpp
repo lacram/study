@@ -14,18 +14,19 @@
 
 using namespace std;
 
-int dp[10001];
-int value[100];
-int n,k;
+int n;
+int arr[1001];
+vector<int> dp(1001);
 
 int solution() {
-  dp[0] = 1;
-  for (int i=0; i<n; i++)
-    for (int j=1; j<=k; j++) {
-      if (j-value[i] >= 0) dp[j] += dp[j-value[i]];
+  for (int i=1; i<=n; i++) {
+    dp[i] = 1;
+    for (int j=1; j<=i; j++) {
+      if (arr[i] < arr[j]) dp[i] = max(dp[i], dp[j]+1);
     }
+  }
   
-  return dp[k];
+  return *max_element(dp.begin(), dp.end());
 }
 
 int main(){
@@ -36,10 +37,10 @@ int main(){
   // ifstream cin;
   // cin.open("input.txt");
 
-  cin >> n >> k;
+  cin >> n;
 
-  for (int i=0; i<n; i++){
-    cin >> value[i];
+  for (int i=1; i<=n; i++){
+    cin >> arr[i];
   }
 
   cout << solution();

@@ -14,18 +14,22 @@
 
 using namespace std;
 
-int dp[10001];
-int value[100];
 int n,k;
+int arr[101];
+int dp[10001];
 
 int solution() {
-  dp[0] = 1;
-  for (int i=0; i<n; i++)
-    for (int j=1; j<=k; j++) {
-      if (j-value[i] >= 0) dp[j] += dp[j-value[i]];
+  for (int i=1; i<=k; i++) {
+    dp[i] = INF;
+  }
+
+  for (int i=1; i<=k; i++) {
+    for (int j=1; j<=n; j++) {
+      if (i-arr[j] >= 0) dp[i] = min(dp[i], dp[i-arr[j]]+1);
     }
-  
-  return dp[k];
+  }
+
+  return dp[k] == INF ? -1 : dp[k];
 }
 
 int main(){
@@ -38,8 +42,8 @@ int main(){
 
   cin >> n >> k;
 
-  for (int i=0; i<n; i++){
-    cin >> value[i];
+  for (int i=1; i<=n; i++){
+    cin >> arr[i];
   }
 
   cout << solution();
