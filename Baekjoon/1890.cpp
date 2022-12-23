@@ -16,17 +16,19 @@ using namespace std;
 
 int n;
 int board[101][101];
-int dp[101][101];
+long long dp[101][101];
 
-int solution() {
+long long solution() {
   dp[1][1] = 1;
   for (int i=1; i<=n; i++)
     for (int j=1; j<=n; j++) {
       if (i == n && j == n) break;
+
       int num = board[i][j];
       if (i+num <=n) dp[i+num][j] += dp[i][j];
       if (j+num <=n) dp[i][j+num] += dp[i][j];
     }
+
   return dp[n][n];
 }
 
@@ -35,8 +37,8 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
-  ifstream cin;
-  cin.open("input.txt");
+  // ifstream cin;
+  // cin.open("input.txt");
 
   cin >> n;
 
