@@ -24,9 +24,13 @@ vector<vector<int>> match = {
   {2,3}
 };
 
+bool compare(int a, int b) {
+  return a > b;
+}
+
 bool canWin(vector<int> score) {
   int s = score[0];
-  sort(score.begin(), score.end(), greater<>());
+  sort(score.begin(), score.end(), compare);
   // 2등이상일경우
   if (score[1] <= s) return true;
   return false;
