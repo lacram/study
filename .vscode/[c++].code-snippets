@@ -13,6 +13,13 @@
       "for (int j=0; j<n; j++)",
     ]
   },
+  "fork": {
+    "scope": "cpp",
+    "prefix": "fork",
+    "body": [
+      "for (int k=0; k<n; k++)",
+    ]
+  },
 
   "bjform": {
     "scope": "cpp",
@@ -36,6 +43,10 @@
       "",
       "int n;",
       "",
+      "int solution() {",
+      "",
+      "}",
+      "",
       "int main(){",
       "  ios_base :: sync_with_stdio(false);",
       "  cin.tie(NULL);",
@@ -50,6 +61,7 @@
       "",
       "  }",
         "",
+      "  cout << solution();",
       "}"
     ]
   },

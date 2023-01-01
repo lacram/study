@@ -10,7 +10,7 @@
 #include <string>
 #include <set>
 #define endl '\n'
-#define INF 1000000
+#define INF 2000000000
 
 using namespace std;
 
@@ -23,8 +23,6 @@ vector<vector<int>> tree;
 vector<int> goals;
 vector<int> starts;
 
-int dp[101][101];
-int record[101][101];
 
 /* 
 bfs
@@ -57,11 +55,10 @@ vector<int> getElevator(int floor) {
   return v;
 }
 
-void print(pair<int,int> p) {
-  if (record[p.first][p.second] == -1) return;
-  print({p.first, record[p.first][p.second]});
-  cout << record[p.first][p.second]+1 << endl;
-  print({record[p.first][p.second], p.second});
+void print(int num) {
+  if (num == -1) return;
+  print(parent[num]);
+  cout << num+1 << endl;
 }
 
 void makeTree() {
@@ -70,42 +67,33 @@ void makeTree() {
   for (int i=0; i<elevators.size(); i++)
     for (int j=i+1; j<elevators.size(); j++) {
       if (canGo(i, j)) {
-        dp[i][j] = 1;
-        dp[j][i] = 1;
+        tree[i].push_back(j);
+        tree[j].push_back(i);
       }
     }
 }
 
-void sol() {
-  
-  for (int k=0; k<m; k++)
-    for (int i=0; i<m; i++)
-      for (int j=0; j<m; j++) {
-        if (dp[i][j] > dp[i][k] + dp[k][j]) {
-          dp[i][j] = dp[i][k] + dp[k][j];
-          record[i][j] = k;
-        }
-      }
-  
-  int ans = INF;
-  pair<int,int> p;
+void bfs() {
+  queue<vector<int>> q;
+
   for (auto start : starts) {
-    for (auto goal : goals) {
-      if (ans > dp[start][goal]) {
-        ans = dp[start][goal];
-        p = {start,goal};
+    q.push({start,1});
+    dist[start] = 1;
+  }
+
+  while (!q.empty()) {
+    int now = q.front()[0];
+    int cost = q.front()[1];
+    q.pop();
+
+    for (auto next : tree[now]) {
+      if (dist[next] > cost+1) {
+        dist[next] = cost + 1;
+        q.push({next,cost+1});
+        parent[next] = now; 
       }
     }
   }
-  if (ans == INF) {
-    cout << -1;
-    return;
-  }
-
-  cout << ans+1 << endl;
-  cout << p.first+1 << endl;
-  print(p);
-  cout << p.second+1 << endl;
 }
 
 int main(){
@@ -113,11 +101,8 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
-<<<<<<< HEAD
-  cout << 1;
-=======
-  // ifstream cin;
-  // cin.open("input.txt");
+  ifstream cin;
+  cin.open("input.txt");
 
   cin >> n >> m;
 
@@ -130,19 +115,25 @@ int main(){
   int fr,to;
   cin >> fr >> to;
 
-  for (int i=0; i<m; i++)
-    for (int j=0; j<m; j++){
-      if (i == j) dp[i][j] = 0;
-      else dp[i][j] = INF;
-    }
-
   makeTree();
   starts = getElevator(fr);
   goals = getElevator(to);
 
   fill(dist, dist + 101, INF);
-  memset(record, -1, sizeof(record));
->>>>>>> 16c45ac8f502d9e3703937e980ffa3e2791984f5
+  memset(parent, -1, sizeof(parent));
+  bfs();
 
-  sol();
+  int ans = INF,last;
+  for (auto goal : goals) {
+    if (ans > dist[goal]) {
+      ans = dist[goal];
+      last = goal;
+    }
+  }
+
+  if (ans == INF) cout << -1;
+  else {
+    cout << ans << endl;
+    print(last);
+  }
 }
