@@ -22,17 +22,6 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
-  ifstream cin;
-  cin.open("input.txt");
-
-  vector<int> v= {1,2,3,4,5};
-
-  int value = 5;
-  int *ptr = &value;
-
-  *ptr -= 1;
-
-  cout << value;
-
+  cout << 1;
 
 }
