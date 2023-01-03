@@ -53,8 +53,8 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
-  ifstream cin;
-  cin.open("input.txt");
+  // ifstream cin;
+  // cin.open("input.txt");
 
   cin >> n;
 
