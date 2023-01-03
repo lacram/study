@@ -113,6 +113,9 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
+<<<<<<< HEAD
+  cout << 1;
+=======
   // ifstream cin;
   // cin.open("input.txt");
 
@@ -139,6 +142,7 @@ int main(){
 
   fill(dist, dist + 101, INF);
   memset(record, -1, sizeof(record));
+>>>>>>> 16c45ac8f502d9e3703937e980ffa3e2791984f5
 
   sol();
 }
