@@ -32,8 +32,6 @@ void bfs() {
     int y = q.front()[1];
     q.pop();
 
-    // if (dist[x][y] < cost) continue;
-
     for (int i=0; i<4; i++) {
       int nx = x + dx[i];
       int ny = y + dy[i];

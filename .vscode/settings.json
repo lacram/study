@@ -111,5 +111,6 @@
   "git.ignoreLimitWarning": true,
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-  "editor.formatOnPaste": false
+  "editor.formatOnPaste": false,
+  "java.compile.nullAnalysis.mode": "disabled"
 }
