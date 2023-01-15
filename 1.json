@@ -1,0 +1,200 @@
+{
+  "href": "https://api.spotify.com/v1/playlists/3soiIyTYPxHBFk2fP3zzCG/tracks?offset=0&limit=100&market=ES&locale=ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+  "items": [
+    {
+      "added_at": "2023-01-10T12:59:48Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/31guwpf55t7mw4rbjqblxkfxhlt4"
+        },
+        "href": "https://api.spotify.com/v1/users/31guwpf55t7mw4rbjqblxkfxhlt4",
+        "id": "31guwpf55t7mw4rbjqblxkfxhlt4",
+        "type": "user",
+        "uri": "spotify:user:31guwpf55t7mw4rbjqblxkfxhlt4"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6HvZYsbFfjnjFrWF950C9d"
+              },
+              "href": "https://api.spotify.com/v1/artists/6HvZYsbFfjnjFrWF950C9d",
+              "id": "6HvZYsbFfjnjFrWF950C9d",
+              "name": "NewJeans",
+              "type": "artist",
+              "uri": "spotify:artist:6HvZYsbFfjnjFrWF950C9d"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/7bnqo1fdJU9nSfXQd3bSMe"
+          },
+          "href": "https://api.spotify.com/v1/albums/7bnqo1fdJU9nSfXQd3bSMe",
+          "id": "7bnqo1fdJU9nSfXQd3bSMe",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273edf5b257be1d6593e81bb45f",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02edf5b257be1d6593e81bb45f",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851edf5b257be1d6593e81bb45f",
+              "width": 64
+            }
+          ],
+          "name": "Ditto",
+          "release_date": "2022-12-19",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:7bnqo1fdJU9nSfXQd3bSMe"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6HvZYsbFfjnjFrWF950C9d"
+            },
+            "href": "https://api.spotify.com/v1/artists/6HvZYsbFfjnjFrWF950C9d",
+            "id": "6HvZYsbFfjnjFrWF950C9d",
+            "name": "NewJeans",
+            "type": "artist",
+            "uri": "spotify:artist:6HvZYsbFfjnjFrWF950C9d"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 185506,
+        "episode": false,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "USA2P2254487"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/3r8RuvgbX9s7ammBn07D3W"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3r8RuvgbX9s7ammBn07D3W",
+        "id": "3r8RuvgbX9s7ammBn07D3W",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Ditto",
+        "popularity": 92,
+        "preview_url": "https://p.scdn.co/mp3-preview/2c9b0826c63c9eb074092338fb787cd315326c68?cid=774b29d4f13844c495f206cafdad9c86",
+        "track": true,
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:3r8RuvgbX9s7ammBn07D3W"
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2023-01-10T12:59:51Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/31guwpf55t7mw4rbjqblxkfxhlt4"
+        },
+        "href": "https://api.spotify.com/v1/users/31guwpf55t7mw4rbjqblxkfxhlt4",
+        "id": "31guwpf55t7mw4rbjqblxkfxhlt4",
+        "type": "user",
+        "uri": "spotify:user:31guwpf55t7mw4rbjqblxkfxhlt4"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6HvZYsbFfjnjFrWF950C9d"
+              },
+              "href": "https://api.spotify.com/v1/artists/6HvZYsbFfjnjFrWF950C9d",
+              "id": "6HvZYsbFfjnjFrWF950C9d",
+              "name": "NewJeans",
+              "type": "artist",
+              "uri": "spotify:artist:6HvZYsbFfjnjFrWF950C9d"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/1HMLpmZAnNyl9pxvOnTovV"
+          },
+          "href": "https://api.spotify.com/v1/albums/1HMLpmZAnNyl9pxvOnTovV",
+          "id": "1HMLpmZAnNyl9pxvOnTovV",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2739d28fd01859073a3ae6ea209",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e029d28fd01859073a3ae6ea209",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048519d28fd01859073a3ae6ea209",
+              "width": 64
+            }
+          ],
+          "name": "NewJeans 1st EP 'New Jeans'",
+          "release_date": "2022-08-01",
+          "release_date_precision": "day",
+          "total_tracks": 4,
+          "type": "album",
+          "uri": "spotify:album:1HMLpmZAnNyl9pxvOnTovV"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6HvZYsbFfjnjFrWF950C9d"
+            },
+            "href": "https://api.spotify.com/v1/artists/6HvZYsbFfjnjFrWF950C9d",
+            "id": "6HvZYsbFfjnjFrWF950C9d",
+            "name": "NewJeans",
+            "type": "artist",
+            "uri": "spotify:artist:6HvZYsbFfjnjFrWF950C9d"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 179026,
+        "episode": false,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "USA2P2230222"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/0a4MMyCrzT0En247IhqZbD"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0a4MMyCrzT0En247IhqZbD",
+        "id": "0a4MMyCrzT0En247IhqZbD",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Hype Boy",
+        "popularity": 89,
+        "preview_url": "https://p.scdn.co/mp3-preview/18a4ef0aa80268375dc6ce9c10d1e0125715fbd1?cid=774b29d4f13844c495f206cafdad9c86",
+        "track": true,
+        "track_number": 2,
+        "type": "track",
+        "uri": "spotify:track:0a4MMyCrzT0En247IhqZbD"
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    }
+  ],
+  "limit": 100,
+  "next": null,
+  "offset": 0,
+  "previous": null,
+  "total": 2
+}
