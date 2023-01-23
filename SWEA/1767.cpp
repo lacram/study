@@ -8,7 +8,7 @@
 #include <map>
 #include <string>
 #include <set>
-#include <fstream>
+// #include <fstream>
 #define endl '\n'
 #define INF 2000000000
  
@@ -97,8 +97,8 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
  
-  ifstream cin;
-  cin.open("input.txt");
+  // ifstream cin;
+  // cin.open("input.txt");
  
   int test;
   cin >> test;
