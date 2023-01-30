@@ -16,14 +16,26 @@ using namespace std;
 
 int n,m;
 int dp[41];
+vector<int> vip;
 
-void solution() {
+int solution() {
   dp[0] = 1;
   dp[1] = 1;
   dp[2] = 2;
 	for (int i = 3; i <= 40; i++) {
 		dp[i] = dp[i - 1] + dp[i - 2];
 	}
+
+  int idx = 1;
+	int ans = 1;
+
+	for (auto num : vip) {
+    ans *= dp[num-idx];
+    idx = num+1;
+  }
+	ans *= dp[n+1 - idx];
+
+  return ans;
 }
 
 int main(){
@@ -35,21 +47,12 @@ int main(){
   // cin.open("input.txt");
 
   cin >> n >> m;
-	
-	solution();
-  
-  int idx = 1;
-	int ans = 1;
 
   for (int i=0; i<m; i++) {
-    int vip;
-    cin >> vip;
-
-    ans *= dp[vip-idx];
-    idx = vip+1;
+    int a;
+    cin >> a;
+    vip.push_back(a);
   }
-
-	ans *= dp[n+1 - idx];
-
-  cout << ans;
+	
+	cout << solution();
 }
